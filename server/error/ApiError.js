@@ -6,7 +6,7 @@ class ApiError extends Error{
     }
 
     static badRequest(massage) {
-        return new ApiError(484, massage)
+        return new ApiError(404, massage)
     }
 
     static internal(massage) {
@@ -17,3 +17,5 @@ class ApiError extends Error{
         return new ApiError(403,massage)
     }
 }
+
+module.exports = ApiError
