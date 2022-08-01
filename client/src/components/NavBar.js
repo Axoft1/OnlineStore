@@ -3,11 +3,10 @@ import { Context } from "..";
 import Navbar from "react-bootstrap/Navbar";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import NavLink from "react-bootstrap/esm/NavLink";
 import Button from "react-bootstrap/Button";
 import { observer } from "mobx-react-lite";
 import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../utils/const";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 
@@ -33,4 +32,7 @@ const NavBar = observer(() => {
                 </Container>
             </Navbar>
         </>
- 
+    )
+})
+
+export default NavBar;

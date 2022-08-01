@@ -6,7 +6,7 @@ import { Context } from '../index';
 const BrandBar = observer(() => {
     const { device } = useContext(Context)
     return (
-        <Row className='d-flex'>
+        <Row className='d-flex '>
             {device.brands.map(brand =>
                 <Card
                     style={{ cursor: 'pointer' }}
