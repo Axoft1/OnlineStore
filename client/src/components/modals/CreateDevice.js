@@ -5,12 +5,21 @@ import { Context } from '../..';
 
 const CreateDevice = ({ show, onHide }) => {
     const { device } = useContext(Context)
+    const [name, setName] = useState('')
+    const [price, setPrice] = useState(0)
+    const [file, setFile] = useState(null)
+    const [brand, setBrand] = useState(null)
+    const [type, setType] = useState(null)
     const [info, setInfo] = useState([])
     const addInfo = () => {
         setInfo([...info, { title: '', description: '', number: Date.now() }])
     }
     const removeInfo = (number) => {
         setInfo(info.filter(i => i.number !== number))
+    }
+
+    const selectFile = (e) => {  // вызывается при выборе файла на компьютере
+        selectFile(e.target.file[0])
     }
 
     return (
@@ -44,18 +53,22 @@ const CreateDevice = ({ show, onHide }) => {
                         </Dropdown.Menu>
                     </Dropdown>
                     <Form.Control
+                        value={name}
+                        onChange={e => setName(e.target.value)}
                         className="mt-4"
                         placeholder="Введите название устройства"
                     />
                     <Form.Control
+                        value={price}
+                        onChange={e => setPrice(e.target.value)}
                         className="mt-4"
                         placeholder="Введите стоимость устройства"
                         type="number"
                     />
                     <Form.Control
                         className="mt-4"
-                        placeholder="Введите название устройства"
                         type="file"
+                        onChange={selectFile}
                     />
                     <hr />
                     <Button
@@ -64,24 +77,24 @@ const CreateDevice = ({ show, onHide }) => {
                     >
                         Добавить новое свойство
                     </Button>
-                
-                        {info.map(i =>
-                            <Row className="mt-4" key={i.number}>
-                                <Col md={4}>
-                                    <Form.Control placeholder="Ввдите название свойства"></Form.Control>
-                                </Col>
-                                <Col md={4}>
-                                    <Form.Control placeholder="Ввдите описание свойства"></Form.Control>
-                                </Col>
-                                <Col md={4}>
-                                    <Button 
+
+                    {info.map(i =>
+                        <Row className="mt-4" key={i.number}>
+                            <Col md={4}>
+                                <Form.Control placeholder="Ввдите название свойства"></Form.Control>
+                            </Col>
+                            <Col md={4}>
+                                <Form.Control placeholder="Ввдите описание свойства"></Form.Control>
+                            </Col>
+                            <Col md={4}>
+                                <Button
                                     onClick={() => removeInfo(i.number)}
                                     variant={"outline-danger"}>Удалить</Button>
-                                </Col>
+                            </Col>
 
-                            </Row>
-                            )}
-                  
+                        </Row>
+                    )}
+
                 </Form>
             </Modal.Body>
             <Modal.Footer>
